@@ -1,0 +1,4 @@
+service acc_calibrate-hal-1-0 /vendor/bin/hw/vendor.qti.hardware.acc_calibrate@1.0-service
+    class hal
+    user system
+    group system
