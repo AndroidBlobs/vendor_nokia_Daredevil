@@ -1,0 +1,30 @@
+service vendor.fingerprint /vendor/bin/fingerprint
+    class core
+    user system
+    group system
+    oneshot
+
+on property:vendor.build.fingerprint=0
+    setprop ro.vendor.build.fingerprint ${ro.vendor.build.fingerprint_normal}
+    setprop ro.odm.build.fingerprint ${ro.vendor.build.fingerprint_normal}
+    setprop ro.bootimage.build.fingerprint ${ro.vendor.build.fingerprint_normal}
+
+on property:vendor.build.fingerprint=1
+    setprop ro.vendor.build.fingerprint ${ro.vendor.build.fingerprint_eeaddv}
+    setprop ro.odm.build.fingerprint ${ro.vendor.build.fingerprint_eeaddv}
+    setprop ro.bootimage.build.fingerprint ${ro.vendor.build.fingerprint_eeaddv}
+
+on property:vendor.build.fingerprint=2
+    setprop ro.vendor.build.fingerprint ${ro.vendor.build.fingerprint_eeasld}
+    setprop ro.odm.build.fingerprint ${ro.vendor.build.fingerprint_eeasld}
+    setprop ro.bootimage.build.fingerprint ${ro.vendor.build.fingerprint_eeasld}
+
+on property:vendor.build.fingerprint=3
+    setprop ro.vendor.build.fingerprint ${ro.vendor.build.fingerprint_ddva}
+    setprop ro.odm.build.fingerprint ${ro.vendor.build.fingerprint_ddva}
+    setprop ro.bootimage.build.fingerprint ${ro.vendor.build.fingerprint_ddva}
+
+on property:vendor.build.fingerprint=4
+    setprop ro.vendor.build.fingerprint ${ro.vendor.build.fingerprint_slda}
+    setprop ro.odm.build.fingerprint ${ro.vendor.build.fingerprint_slda}
+    setprop ro.bootimage.build.fingerprint ${ro.vendor.build.fingerprint_slda}

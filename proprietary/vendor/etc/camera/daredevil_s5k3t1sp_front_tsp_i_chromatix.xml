@@ -1,0 +1,231 @@
+<!--
+  Copyright (c) 2015 Qualcomm Technologies, Inc.
+  All Rights Reserved.
+  Confidential and Proprietary - Qualcomm Technologies, Inc.
+-->
+
+<!--
+CommonChromatixInfo:
+	CommonChromatixInfo is the information about chromatix needed for
+		various use cases.
+	Ex:- Preview, Snapshot, ZSL, HFR, HDR, Video, Liveshot for ISP, CPP,
+		3A and SW PostProc.
+	Entries in this node are common for all sensor modes.
+
+ResolutionChromatixInfo:
+	ResolutionChromatixInfo is the information about chromatix needed for
+		various use cases.
+	Ex:- Preview, Snapshot, ZSL, HFR, HDR, Video, Liveshot for ISP, CPP,
+		3A and SW PostProc.
+	Entries in this node are specific to sensor resolution.
+
+ChromatixName:
+	Contains the list of chromatix names for all modules.
+	special_mode_mask:
+		It is the bit mask for special modes, which is used for
+			chromatix selection.
+		Special modes can be any mode that needs a special chromatix.
+		Ex:- scene mode, DZOOM mode, OIS capture mode, flash mode
+		This is applicable for CommonChromatixInfo and
+			ResolutionChromatixInfo.
+		special_mode_mask="0" means none of the special modes are
+			selected.
+	sensor_resolution_index:
+		It is the sensor resolution index for which chromatix libraries
+			will be choosen.
+		It is applicable only in ResolutionChromatixInfo.
+
+ISPCommon :
+	Common tuning library name for ISP
+ISPPreview :
+	Preview tuning library name for ISP
+ISPSnapshot :
+	Snapshot tuning library name for ISP
+CPPCommon :
+	Common tuning library name for CPP
+CPPPreview :
+	Preview tuning library name for CPP
+CPPSnapshot :
+	Snapshot tuning library name for CPP
+CPPLiveshot :
+	Liveshot tuning library name for CPP
+PostProc :
+	Tuning library name for postproc module
+A3Preview :
+	Preview tuning library for 3A
+A3Video :
+	Video tuning library for 3A
+
+Order of Resolution Pick:
+	Assume the current sensor mode is "r" and special mode mask is "s".
+	Chromatix for a module and type is choosen in this order till we find a
+		valid chroamtix file name or else NULL is returned.
+	1) From ResolutionChromatixInfo node for which sensor_resolution_index
+		is "r" and special_mode_mask is "s".
+	2) From CommonChromatixInfo node for which special_mode_mask is "s".
+	3) From ResolutionChromatixInfo node for which sensor_resolution_index
+		is "r" and special_mode_mask is "0".
+	4) From CommonChromatixInfo node for which special_mode_mask is "0".
+	5) NULL is returned if we dont find in any of the above cases.
+
+special_mode_mask values:
+	SENSOR_SPECIAL_MODE_NONE = 0,
+	SENSOR_SPECIAL_MODE_FLASH = 1,
+	SENSOR_SPECIAL_MODE_ZOOM_UPSCALE = 2,
+	SENSOR_SPECIAL_MODE_ZOOM_DOWNSCALE = 4,
+	SENSOR_SPECIAL_MODE_OIS_CAPTURE = 8,
+-->
+
+<ChromatixConfigurationRoot>
+  <CommonChromatixInfo>
+    <ChromatixName special_mode_mask="0">
+      <ISPCommon>daredevil_s5k3t1sp_front_tsp_i_common</ISPCommon>
+      <PostProc>daredevil_s5k3t1sp_front_tsp_i_postproc</PostProc>
+    </ChromatixName>
+  </CommonChromatixInfo>
+  <ResolutionChromatixInfo>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="0">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_preview</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_preview</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="CTSVERIFY">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_preview</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_preview</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_5M_hht</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_its_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="BEAUTY_MODE">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_snapshot_beauty</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_snapshot_beauty</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview_beauty</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_beauty</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_beauty_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="PRO">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_preview</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_preview</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview_pro</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_pro</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="SPECIAL_SIZE_4">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_5M_hht</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="WEIXIN">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_video_weixin</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_video_weixin</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_weixin</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_video_weixin</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_weixin</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video_weixin</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_weixin</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_weixin_video_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_weixin_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="FACE">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_video_face</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_video_face</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_face</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_video_face</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_face</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video_face</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_face</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_face_video_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_face_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="SUPER_BOKEH">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_bokeh_preview</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_bokeh_preview</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview_bokeh</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_bokeh</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_default_bokeh_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="SPECIAL_SIZE_1">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_20m</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="SPECIAL_SIZE_2">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_15m</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="SPECIAL_SIZE_3">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_snapshot</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_preview</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_snapshot_12m</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_preview_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="1080P">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_video_1080p</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_1080p</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video_1080p</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+    <ChromatixName sensor_resolution_index="0" special_mode_mask="720P">
+      <ISPPreview>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPPreview>
+      <ISPSnapshot>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPSnapshot>
+      <ISPVideo>daredevil_s5k3t1sp_front_tsp_i_video_default</ISPVideo>
+      <CPPPreview>daredevil_s5k3t1sp_front_tsp_i_cpp_video_720p</CPPPreview>
+      <CPPSnapshot>daredevil_s5k3t1sp_front_tsp_i_cpp_video_720p</CPPSnapshot>
+      <CPPVideo>daredevil_s5k3t1sp_front_tsp_i_cpp_video_720p</CPPVideo>
+      <CPPLiveshot>daredevil_s5k3t1sp_front_tsp_i_cpp_liveshot</CPPLiveshot>
+      <A3Preview>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Preview>
+      <A3Video>daredevil_s5k3t1sp_front_tsp_i_fullsize_video_3a</A3Video>
+    </ChromatixName>
+  </ResolutionChromatixInfo>
+</ChromatixConfigurationRoot>

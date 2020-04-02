@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><sunwave:Config xmlns:sunwave="http://www.sunwavecorp.com/some-location" Environment="TEE" platform="BQ/龙旗/信利-QSEE4.0.5-SW9058G">
+  <feature>
+    <key_emulation cname="按键功能开关" default="false" desc="默认：false" format="boolean" useable="true">false</key_emulation>
+    <navigation cname="导航功能开关" default="false" desc="默认：false" format="boolean" useable="true">true</navigation>
+    <unique_finger cname="重复手指录入判断开关" default="true" desc="默认：true" format="boolean" useable="false">true</unique_finger>
+  </feature>
+
+  <algo>
+    <enrolling_num_max cname="单模板录入最大次数" default="15" desc="大于10。默认: 15" format="array" options="10次|11次|12次|13次|14次|15次|16次|17次|18次|19次|20次" useable="true" values="10|11|12|13|14|15|16|17|18|19|20">15</enrolling_num_max>
+    <enrolling_samples cname="单模板录入次数" default="0" desc="不得大于单模板录入最大次数。默认: 动态计算" format="array" options="动态计算|8次|9次|10次|11次|12次|13次|14次|15次" useable="true" values="0|8|9|10|11|12|13|14|15">12</enrolling_samples>
+  </algo>
+
+  <device>
+  </device>
+
+  <sensor>
+  </sensor>
+
+  <driver>
+  </driver>
+
+  <navigation>
+    <mode cname="导航方向模式选择" default="3" desc="导航方向模式选择。默认：SF_NAV_MODE_AUTO" format="array" options="SF_NAV_MODE_ALL|SF_NAV_MODE_LMR|SF_NAV_MODE_UMD|SF_NAV_MODE_AUTO" useable="true" values="0|1|2|3">3</mode>
+    <direct cname="导航方向映射" default="UDLR" desc="导航方向映射。默认：UDLR" format="string" useable="true">UDLR</direct>
+    <longkey_en cname="导航长按开关" default="true" desc="默认：true" format="boolean" useable="true">false</longkey_en>
+  </navigation>
+
+  <diagnosis>
+    <img_invciper_data cname="导出原始图像" default="false" desc="需依赖 导出指纹图像。默认：false" format="boolean" useable="true">false</img_invciper_data>
+    <data_dumping cname="导出指纹图像" default="false" desc="默认：false" format="boolean" useable="true">false</data_dumping>
+    <log_level cname="调试信息等级" default="2" desc="LOG 打印等级。默认：LOG_LEVEL_INF" format="array" options="LOG_LEVEL_INF|LOG_LEVEL_ERR" useable="true" values="2|3">2</log_level>
+  </diagnosis>
+
+  <solution>
+    <qsee_spi_id cname="QSEE SPI 设备号" default="3" desc="QSEE SPI 设备号。默认：QSEE_SPI_DEVICE_6" format="array" options="QSEE_SPI_DEVICE_1|QSEE_SPI_DEVICE_2|QSEE_SPI_DEVICE_3|QSEE_SPI_DEVICE_4|QSEE_SPI_DEVICE_5|QSEE_SPI_DEVICE_6|QSEE_SPI_DEVICE_7|QSEE_SPI_DEVICE_8|QSEE_SPI_DEVICE_9|QSEE_SPI_DEVICE_10|QSEE_SPI_DEVICE_11|QSEE_SPI_DEVICE_12" useable="true" values="1|2|3|4|5|6|7|8|9|10|11|12">3</qsee_spi_id>
+  </solution>
+
+  <customer>
+    <optimize_cpu cname="调节 CPU 频率" default="false" desc="匹配前调节 CPU 频率，加快解锁。默认：false" format="boolean" useable="true">true</optimize_cpu>
+  </customer>
+
+</sunwave:Config>

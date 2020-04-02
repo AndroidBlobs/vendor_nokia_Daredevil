@@ -1,0 +1,14 @@
+service nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service.sec
+    class hal
+    user nfc
+    group nfc
+    disabled
+
+on boot && property:ro.boot.boardid=1
+    start nfc_hal_service
+on boot && property:ro.boot.boardid=2
+    start nfc_hal_service
+on boot && property:ro.boot.boardid=4
+    start nfc_hal_service
+on boot && property:ro.boot.boardid=5
+    start nfc_hal_service
